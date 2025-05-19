@@ -4,115 +4,204 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asteroid Shooter | Game 2D Web-Based</title>
-<link rel="stylesheet" href="style.css">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Favicon -->
     <link rel="icon" href="assets/icon.png" type="image/png">
+    
+    <!-- Meta tags -->
     <meta name="description" content="Asteroid Shooter adalah game 2D berbasis web yang menguji keterampilan menembak dan refleksmu. Lindungi galaksi dari asteroid!">
     <meta name="keywords" content="game, asteroid, shooter, web-based, 2D, HTML5, JavaScript">
 </head>
 <body>
-    <!-- Header/Navbar -->
-    <header>
-        <div class="logo">ASTEROID<span>SHOOTER</span></div>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#game">Game</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#footer">Contact</a></li>
-                <li><a href="#game" class="play-now-btn">Play Now</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <!-- Hero Section -->
-    <section id="home">
-        <div class="hero-content">
-            <h1>ASTEROID SHOOTER</h1>
-            <p>Pertahankan galaksi dari serangan asteroid! Kendalikan pesawat luar angkasa, tembak asteroid, dan capai skor tertinggi!</p>
-            <div class="hero-buttons">
-                <a href="#game" class="btn btn-primary">Mulai Bermain</a>
-                <a href="#about" class="btn btn-secondary">Pelajari Lebih Lanjut</a>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Game Section -->
-<section id="game">
-    <h2 class="section-header">Main Game</h2>
-    <div class="game-container">
-        <div class="game-info">
-            <div id="score">Skor: 0</div>
-            <div id="highscore">Skor Tertinggi: 0</div>
-            <div id="lives">Nyawa: 3</div>
-        </div>
-        <canvas id="gameCanvas" class="game-canvas" width="600" height="400"></canvas>
-        <div class="game-controls">
-            <div class="control-btn" id="startBtn">Mulai</div>
-            <div class="control-btn" id="pauseBtn">Jeda</div>
-            <div class="control-btn" id="restartBtn">Restart</div>
-            <div class="control-btn" id="settingsBtn">Pengaturan</div>
-        </div>
-        <div class="game-instructions">
-            <p>Kontrol: Gunakan tombol panah Kiri/Kanan untuk bergerak, panah Atas untuk maju, dan Spasi untuk menembak</p>
-        </div>
-        <!-- Settings Menu -->
-        <div id="settingsMenu" style="display: none; position: absolute; background: rgba(0, 0, 0, 0.8); color: white; padding: 20px; border-radius: 10px; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-            <h3>Pengaturan</h3>
-            <label for="asteroidSpeed">Kecepatan Asteroid: <span id="asteroidSpeedValue">1.0</span></label>
-            <input type="range" id="asteroidSpeed" min="0.5" max="2.0" step="0.1" value="1.0">
-            <label for="shipSpeed">Kecepatan Kapal: <span id="shipSpeedValue">0.1</span></label>
-            <input type="range" id="shipSpeed" min="0.05" max="0.2" step="0.01" value="0.1">
-            <button id="saveSettings" class="control-btn" style="margin-top: 10px;">Simpan</button>
-            <button id="closeSettings" class="control-btn">Tutup</button>
-        </div>
-    </div>
-</section>
-    
-    <!-- About Section -->
-    <section id="about">
-        <h2 class="section-header" style="color: #121212;">Tentang Game</h2>
-        <div class="about-content">
-            <div class="about-card">
-                <h3>Konsep Game</h3>
-                <p>Asteroid Shooter adalah game shooter klasik di mana kamu mengendalikan pesawat luar angkasa yang harus menghancurkan asteroid yang melayang menuju ke arahmu. Tujuanmu adalah mendapatkan skor tertinggi dengan menembak asteroid sebanyak mungkin sambil menghindari tabrakan.</p>
-            </div>
-            <div class="about-card">
-                <h3>Cara Bermain</h3>
-                <p>Gunakan tombol panah Kiri/Kanan untuk memutar pesawat. Tekan tombol panah Atas untuk maju ke arah yang dituju pesawat. Tekan Spasi untuk menembak asteroid. Jika pesawatmu bertabrakan dengan asteroid, kamu akan kehilangan nyawa. Game berakhir ketika nyawamu habis.</p>
-            </div>
-            <div class="about-card">
-                <h3>Teknologi</h3>
-                <p>Game ini dibuat menggunakan teknologi web modern:</p>
-                <ul style="list-style-position: inside; padding-left: 20px;">
-                    <li>HTML5 untuk struktur halaman</li>
-                    <li>CSS3 untuk styling dan animasi</li>
-                    <li>JavaScript vanilla untuk logika game</li>
-                    <li>HTML5 Canvas untuk rendering game</li>
-                    <li>Web Audio API untuk efek suara</li>
+    <!-- Header/Navbar with Bootstrap -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand logo" href="#">ASTEROID<span>SHOOTER</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#game">Game</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#footer">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link play-now-btn btn btn-danger btn-sm ms-2" href="#game">Play Now</a>
+                    </li>
                 </ul>
             </div>
         </div>
+    </nav>
+    
+    <!-- Hero Section with Bootstrap -->
+    <section id="home" class="d-flex align-items-center justify-content-center text-center text-white">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <h1 class="display-4 fw-bold mb-4">ASTEROID SHOOTER</h1>
+                    <p class="lead mb-4">Pertahankan galaksi dari serangan asteroid! Kendalikan pesawat luar angkasa, tembak asteroid, dan capai skor tertinggi!</p>
+                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                        <a href="#game" class="btn btn-danger btn-lg">Mulai Bermain</a>
+                        <a href="#about" class="btn btn-outline-light btn-lg">Pelajari Lebih Lanjut</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
     
-    <!-- Footer -->
-    <footer id="footer">
-        <div class="footer-content">
-            <h3>ASTEROID SHOOTER</h3>
-            <p>Created with Claude AI</p>
-            <div class="social-links">
-                <a href="#" class="social-link">FB</a>
-                <a href="#" class="social-link">IG</a>
-                <a href="#" class="social-link">TW</a>
-                <a href="#" class="social-link">YT</a>
+    <!-- Game Section with Bootstrap -->
+    <section id="game" class="py-5">
+        <div class="container py-5">
+            <h2 class="text-center mb-5 section-header">Main Game</h2>
+            <div class="game-container">
+                <div class="game-info card mb-4">
+                    <div class="row g-0 p-2">
+                        <div class="col-4 text-center" id="score">Skor: 0</div>
+                        <div class="col-4 text-center" id="highscore">Skor Tertinggi: 0</div>
+                        <div class="col-4 text-center" id="lives">Nyawa: 3</div>
+                    </div>
+                </div>
+                <canvas id="gameCanvas" class="game-canvas mb-4 shadow" width="600" height="400"></canvas>
+                <div class="game-controls mb-4">
+                    <button class="btn btn-outline-light me-2" id="startBtn">
+                        <i class="fas fa-play me-1"></i> Mulai
+                    </button>
+                    <button class="btn btn-outline-light me-2" id="pauseBtn">
+                        <i class="fas fa-pause me-1"></i> Jeda
+                    </button>
+                    <button class="btn btn-outline-light me-2" id="restartBtn">
+                        <i class="fas fa-redo-alt me-1"></i> Restart
+                    </button>
+                    <button class="btn btn-outline-light" id="settingsBtn">
+                        <i class="fas fa-cog me-1"></i> Pengaturan
+                    </button>
+                </div>
+                <div class="game-instructions card p-3 bg-dark text-white">
+                    <p class="mb-0">
+                        <i class="fas fa-keyboard me-2"></i> Kontrol: Gunakan tombol panah Kiri/Kanan untuk bergerak, panah Atas untuk maju, dan Spasi untuk menembak
+                    </p>
+                </div>
+                
+                <!-- Settings Menu -->
+                <div id="settingsMenu" class="settings-menu">
+                    <h3 class="mb-3">Pengaturan</h3>
+                    <div class="mb-3">
+                        <label for="asteroidSpeed" class="form-label">Kecepatan Asteroid: <span id="asteroidSpeedValue">1.0</span></label>
+                        <input type="range" class="form-range" id="asteroidSpeed" min="0.5" max="2.0" step="0.1" value="1.0">
+                    </div>
+                    <div class="mb-3">
+                        <label for="shipSpeed" class="form-label">Kecepatan Kapal: <span id="shipSpeedValue">0.1</span></label>
+                        <input type="range" class="form-range" id="shipSpeed" min="0.05" max="0.2" step="0.01" value="0.1">
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button id="saveSettings" class="btn btn-success me-2">Simpan</button>
+                        <button id="closeSettings" class="btn btn-secondary">Tutup</button>
+                    </div>
+                </div>
             </div>
-            <div class="contact-info">
-                <p>Kontak: info@asteroidshooter.com</p>
+        </div>
+    </section>
+    
+    <!-- About Section with Bootstrap -->
+    <section id="about" class="py-5 bg-light">
+        <div class="container py-5">
+            <h2 class="text-center mb-5 section-header">Tentang Game</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h3 class="card-title text-danger mb-3"><i class="fas fa-rocket me-2"></i>Konsep Game</h3>
+                            <p class="card-text">Asteroid Shooter adalah game shooter klasik di mana kamu mengendalikan pesawat luar angkasa yang harus menghancurkan asteroid yang melayang menuju ke arahmu. Tujuanmu adalah mendapatkan skor tertinggi dengan menembak asteroid sebanyak mungkin sambil menghindari tabrakan.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h3 class="card-title text-danger mb-3"><i class="fas fa-gamepad me-2"></i>Cara Bermain</h3>
+                            <p class="card-text">Gunakan tombol panah Kiri/Kanan untuk memutar pesawat. Tekan tombol panah Atas untuk maju ke arah yang dituju pesawat. Tekan Spasi untuk menembak asteroid. Jika pesawatmu bertabrakan dengan asteroid, kamu akan kehilangan nyawa. Game berakhir ketika nyawamu habis.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h3 class="card-title text-danger mb-3"><i class="fas fa-code me-2"></i>Teknologi</h3>
+                            <p class="card-text">Game ini dibuat menggunakan teknologi web modern:</p>
+                            <ul class="list-group list-group-flush mt-2">
+                                <li class="list-group-item bg-transparent">HTML5 untuk struktur halaman</li>
+                                <li class="list-group-item bg-transparent">CSS3 dan Bootstrap untuk styling</li>
+                                <li class="list-group-item bg-transparent">JavaScript vanilla untuk logika game</li>
+                                <li class="list-group-item bg-transparent">HTML5 Canvas untuk rendering game</li>
+                                <li class="list-group-item bg-transparent">Web Audio API untuk efek suara</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2025 Asteroid Shooter. All Rights Reserved.</p>
+        </div>
+    </section>
+    
+    <!-- Footer with Bootstrap -->
+    <footer id="footer" class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row text-center text-md-start">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <h3 class="mb-3">ASTEROID<span class="text-danger">SHOOTER</span></h3>
+                    <p>Designed by Claude Ai, Structur and html by Galuh</p>
+                    <div class="contact-info mb-3">
+                        <p><i class="fas fa-envelope me-2"></i>Kontak: info@asteroidshooter.com</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h4 class="mb-3">Follow Us</h4>
+                    <div class="social-links mb-3">
+                        <a href="#" class="social-link me-2">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link me-2">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link me-2">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link me-2">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 Asteroid Shooter. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
-<script src="script.js"></script>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Game Script -->
+    <script src="script.js"></script>
+</body>
+</html>
