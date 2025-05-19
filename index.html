@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asteroid Shooter | Game 2D Web-Based</title>
+<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="icon" href="assets/icon.png" type="image/png">
+    <meta name="description" content="Asteroid Shooter adalah game 2D berbasis web yang menguji keterampilan menembak dan refleksmu. Lindungi galaksi dari asteroid!">
+    <meta name="keywords" content="game, asteroid, shooter, web-based, 2D, HTML5, JavaScript">
+</head>
+<body>
+    <!-- Header/Navbar -->
+    <header>
+        <div class="logo">ASTEROID<span>SHOOTER</span></div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#game">Game</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#footer">Contact</a></li>
+                <li><a href="#game" class="play-now-btn">Play Now</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Hero Section -->
+    <section id="home">
+        <div class="hero-content">
+            <h1>ASTEROID SHOOTER</h1>
+            <p>Pertahankan galaksi dari serangan asteroid! Kendalikan pesawat luar angkasa, tembak asteroid, dan capai skor tertinggi!</p>
+            <div class="hero-buttons">
+                <a href="#game" class="btn btn-primary">Mulai Bermain</a>
+                <a href="#about" class="btn btn-secondary">Pelajari Lebih Lanjut</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Game Section -->
+<section id="game">
+    <h2 class="section-header">Main Game</h2>
+    <div class="game-container">
+        <div class="game-info">
+            <div id="score">Skor: 0</div>
+            <div id="highscore">Skor Tertinggi: 0</div>
+            <div id="lives">Nyawa: 3</div>
+        </div>
+        <canvas id="gameCanvas" class="game-canvas" width="600" height="400"></canvas>
+        <div class="game-controls">
+            <div class="control-btn" id="startBtn">Mulai</div>
+            <div class="control-btn" id="pauseBtn">Jeda</div>
+            <div class="control-btn" id="restartBtn">Restart</div>
+            <div class="control-btn" id="settingsBtn">Pengaturan</div>
+        </div>
+        <div class="game-instructions">
+            <p>Kontrol: Gunakan tombol panah Kiri/Kanan untuk bergerak, panah Atas untuk maju, dan Spasi untuk menembak</p>
+        </div>
+        <!-- Settings Menu -->
+        <div id="settingsMenu" style="display: none; position: absolute; background: rgba(0, 0, 0, 0.8); color: white; padding: 20px; border-radius: 10px; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+            <h3>Pengaturan</h3>
+            <label for="asteroidSpeed">Kecepatan Asteroid: <span id="asteroidSpeedValue">1.0</span></label>
+            <input type="range" id="asteroidSpeed" min="0.5" max="2.0" step="0.1" value="1.0">
+            <label for="shipSpeed">Kecepatan Kapal: <span id="shipSpeedValue">0.1</span></label>
+            <input type="range" id="shipSpeed" min="0.05" max="0.2" step="0.01" value="0.1">
+            <button id="saveSettings" class="control-btn" style="margin-top: 10px;">Simpan</button>
+            <button id="closeSettings" class="control-btn">Tutup</button>
+        </div>
+    </div>
+</section>
+    
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-header" style="color: #121212;">Tentang Game</h2>
+        <div class="about-content">
+            <div class="about-card">
+                <h3>Konsep Game</h3>
+                <p>Asteroid Shooter adalah game shooter klasik di mana kamu mengendalikan pesawat luar angkasa yang harus menghancurkan asteroid yang melayang menuju ke arahmu. Tujuanmu adalah mendapatkan skor tertinggi dengan menembak asteroid sebanyak mungkin sambil menghindari tabrakan.</p>
+            </div>
+            <div class="about-card">
+                <h3>Cara Bermain</h3>
+                <p>Gunakan tombol panah Kiri/Kanan untuk memutar pesawat. Tekan tombol panah Atas untuk maju ke arah yang dituju pesawat. Tekan Spasi untuk menembak asteroid. Jika pesawatmu bertabrakan dengan asteroid, kamu akan kehilangan nyawa. Game berakhir ketika nyawamu habis.</p>
+            </div>
+            <div class="about-card">
+                <h3>Teknologi</h3>
+                <p>Game ini dibuat menggunakan teknologi web modern:</p>
+                <ul style="list-style-position: inside; padding-left: 20px;">
+                    <li>HTML5 untuk struktur halaman</li>
+                    <li>CSS3 untuk styling dan animasi</li>
+                    <li>JavaScript vanilla untuk logika game</li>
+                    <li>HTML5 Canvas untuk rendering game</li>
+                    <li>Web Audio API untuk efek suara</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="footer-content">
+            <h3>ASTEROID SHOOTER</h3>
+            <p>Created with Claude AI</p>
+            <div class="social-links">
+                <a href="#" class="social-link">FB</a>
+                <a href="#" class="social-link">IG</a>
+                <a href="#" class="social-link">TW</a>
+                <a href="#" class="social-link">YT</a>
+            </div>
+            <div class="contact-info">
+                <p>Kontak: info@asteroidshooter.com</p>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Asteroid Shooter. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+<script src="script.js"></script>
